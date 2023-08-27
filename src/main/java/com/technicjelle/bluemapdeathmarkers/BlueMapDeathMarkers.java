@@ -178,9 +178,9 @@ public final class BlueMapDeathMarkers extends JavaPlugin implements Listener {
 			markerSet.put(key, markerBuilder.build());
 
 			// Wait seconds and remove the marker
-			Bukkit.getScheduler().runTaskLater(this,
-					() -> markerSet.remove(key),
-					config.expireTimeInMinutes * 20L * 60L);
+			Scheduler.runAsyncSchedulerDelay(this,
+					scheduledTask -> markerSet.remove(key),
+					(int) config.expireTimeInMinutes);
 		}
 	}
 
